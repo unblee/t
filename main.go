@@ -29,12 +29,22 @@ Usage: t [input text] or echo "input text" | t
 		Good morning!
 `
 
+const (
+	ExitCodeOK = iota
+	ExitCodeError
+)
+
 func main() {
 	flag.Usage = func() {
 		fmt.Println(usageMsg)
-		os.Exit(0)
+		os.Exit(ExitCodeOK)
 	}
 	flag.Parse()
+	os.Exit(run(os.Args))
+}
+
+func run(arg []string) int {
+	return ExitCodeOK
 }
 
 type Client struct {
