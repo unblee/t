@@ -3,12 +3,39 @@ package main
 import (
 	"context"
 	"errors"
+	"flag"
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
+	"os"
 	"path"
 	"time"
 )
+
+const usageMsg = `
+Usage: t [input text] or echo "input text" | t
+
+	t translates input text specified by argument or STDIN using Watson Language Translation API.
+	Source language will be automatically detected.
+
+	export T_WATSON_LANGUAGE_TRANSLATOR_API_USERNAME = <Your Watson Language Translator API username>
+	export T_WATSON_LANGUAGE_TRANSLATOR_API_PASSWORD = <Your Watson Language Translator API password>
+
+	Example:
+		$ t "Good morning!"
+		おはようございます"
+		$ t "おはようございます!"
+		Good morning!
+`
+
+func main() {
+	flag.Usage = func() {
+		fmt.Println(usageMsg)
+		os.Exit(0)
+	}
+	flag.Parse()
+}
 
 type Client struct {
 	url                *url.URL
