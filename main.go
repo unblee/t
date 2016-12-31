@@ -1,9 +1,12 @@
 package main
 
 import (
+	"context"
 	"errors"
+	"io"
 	"net/http"
 	"net/url"
+	"path"
 	"time"
 )
 
@@ -34,4 +37,29 @@ func newClient(username, password string) (*Client, error) {
 		username:   username,
 		password:   password,
 	}, nil
+}
+
+func (c *Client) newRequest(ctx context.Context, method, spath string, body io.Reader) (*http.Request, error) {
+	u := *c.url
+	u.Path = path.Join(c.url.Path, spath)
+
+	req, err := http.NewRequest(method, u.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req = req.WithContext(ctx)
+
+	req.SetBasicAuth(c.username, c.password)
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Accept", "application/json")
+
+	return req, nil
+}
+
+type requestBody struct {
+	ModelID string   `json:"model_id"`
+	Source  string   `json:"source"`
+	Target  string   `json:"target"`
+	Text    []string `json:"text"`
 }
