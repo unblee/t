@@ -7,12 +7,12 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
 	"path"
 	"strings"
-	"time"
 
 	"github.com/mattn/go-isatty"
 )
@@ -87,9 +87,7 @@ type Client struct {
 func newClient(username, password string) (*Client, error) {
 	u, _ := url.Parse("https://gateway.watsonplatform.net/language-translation/api/v2")
 
-	hc := &http.Client{
-		Timeout: 5 * time.Second,
-	}
+	hc := new(http.Client)
 
 	if len(username) == 0 {
 		return nil, errors.New("missing username")
