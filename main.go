@@ -59,7 +59,23 @@ func run(args []string) int {
 		b, _ := ioutil.ReadAll(os.Stdin)
 		text = string(b)
 	}
+	model, source, target := detectLang(text)
+	reqBody := &requestBody{
+		ModelID: model,
+		Source:  source,
+		Target:  target,
+		Text:    []string{text},
+	}
 	return ExitCodeOK
+}
+
+func detectLang(text string) (model, source, target string) {
+	for _, c := range text {
+		if c > 127 {
+			return "ja-en", "ja", "en"
+		}
+	}
+	return "en-ja", "en", "ja"
 }
 
 type Client struct {
