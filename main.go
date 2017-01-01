@@ -6,11 +6,15 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
 	"path"
+	"strings"
 	"time"
+
+	"github.com/mattn/go-isatty"
 )
 
 const usageMsg = `
@@ -40,10 +44,21 @@ func main() {
 		os.Exit(ExitCodeOK)
 	}
 	flag.Parse()
-	os.Exit(run(os.Args))
+	os.Exit(run(flag.Args()))
 }
 
-func run(arg []string) int {
+func run(args []string) int {
+	var text string
+	if isatty.IsTerminal(os.Stdin.Fd()) {
+		if flag.NArg() == 0 {
+			fmt.Println(usageMsg)
+			os.Exit(ExitCodeOK)
+		}
+		text = strings.Join(args, " ")
+	} else { // with Pipe
+		b, _ := ioutil.ReadAll(os.Stdin)
+		text = string(b)
+	}
 	return ExitCodeOK
 }
 

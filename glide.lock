@@ -1,0 +1,14 @@
+hash: 4374dfd7c78f1d7e08e4bc9abd862d34048741f8cc7af80c76334eabe253e3fd
+updated: 2017-01-01T01:28:15.9742814+09:00
+imports:
+- name: github.com/mattn/go-isatty
+  version: 30a891c33c7cde7b02a981314b4228ec99380cca
+- name: golang.org/x/crypto
+  version: f6b343c37ca80bfa8ea539da67a0b621f84fab1d
+  subpackages:
+  - ssh/terminal
+- name: golang.org/x/sys
+  version: d75a52659825e75fff6158388dddc6a5b04f9ba5
+  subpackages:
+  - unix
+testImports: []
