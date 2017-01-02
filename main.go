@@ -85,7 +85,7 @@ type Client struct {
 }
 
 func newClient(username, password string) (*Client, error) {
-	u, _ := url.Parse("https://gateway.watsonplatform.net/language-translation/api/v2")
+	u, _ := url.Parse("https://gateway.watsonplatform.net/language-translator/api/v2")
 
 	hc := new(http.Client)
 
