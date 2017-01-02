@@ -49,7 +49,7 @@ func main() {
 
 func run(args []string) int {
 	var text string
-	if isatty.IsTerminal(os.Stdin.Fd()) {
+	if isatty.IsTerminal(os.Stdin.Fd()) { // with Args
 		if flag.NArg() == 0 {
 			fmt.Println(usageMsg)
 			os.Exit(ExitCodeOK)
