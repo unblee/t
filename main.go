@@ -90,11 +90,11 @@ func newClient(username, password string) (*Client, error) {
 	hc := new(http.Client)
 
 	if len(username) == 0 {
-		return nil, errors.New("missing username")
+		return nil, errors.New("Missing username. Please set 'T_WATSON_LANGUAGE_TRANSLATOR_API_USERNAME'.")
 	}
 
 	if len(password) == 0 {
-		return nil, errors.New("missing user password")
+		return nil, errors.New("Missing user password. Please set 'T_WATSON_LANGUAGE_TRANSLATOR_API_PASSWORD'.")
 	}
 
 	return &Client{
