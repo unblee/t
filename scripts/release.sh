@@ -9,7 +9,7 @@ release_dir=${repo_root}/release
 
 [ ! -e ${release_dir} ] && mkdir ${release_dir} && chmod 777 ${release_dir}
 
-apk add --no-cache openssl curl zip
+apk add --no-cache openssl curl zip git
 
 echo ""
 for target in `ls ${dest_dir}`
