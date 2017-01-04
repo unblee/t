@@ -28,7 +28,7 @@ fi
 wget -O /tmp/ghr.zip https://github.com/tcnksm/ghr/releases/download/v0.5.3/ghr_v0.5.3_linux_${arch}.zip
 unzip -d /go/bin /tmp/ghr.zip
 ghr=/go/bin/ghr
-ghr_cmd="${ghr} ${VERSION} ${release_dir}"
+ghr_cmd="${ghr} -u ${USERNAME} -r ${REPO} ${VERSION} ${release_dir}"
 echo ${ghr_cmd}
 eval ${ghr_cmd}
 
