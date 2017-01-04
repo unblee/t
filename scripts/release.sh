@@ -14,9 +14,12 @@ apk add --no-cache openssl curl zip git
 echo ""
 for target in `ls ${dest_dir}`
 do
-  archive_cmd="zip ${release_dir}/${target}.zip ${dest_dir}/${target}"
-  echo ${archive_cmd}
-  eval ${archive_cmd}
+  {
+    cd ${dest_dir}
+    archive_cmd="zip -r ${release_dir}/${target}.zip ${target}"
+    echo ${archive_cmd}
+    eval ${archive_cmd}
+  }
 done
 
 echo ""
