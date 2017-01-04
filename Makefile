@@ -1,7 +1,7 @@
 VERSION    := v0.1.0
 USERNAME   := unblee
 NAME       := t
-REPO       := $(USERNAME)/$(NAME)
+REPO       := $(NAME)
 REVISION   := $(shell git rev-parse --short HEAD)
 GO_VERSION := 1.7.4
 LDFLAGS    := -w -s \
