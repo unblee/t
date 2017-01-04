@@ -12,6 +12,10 @@ Japanese <-> English translate in terminal
   - password (different from your Bluemix account)
     - `export T_WATSON_LANGUAGE_TRANSLATOR_API_PASSWORD=<Your Watson Language Translator API password>`
 
+## Install
+
+You can download binary from [release page](https://github.com/unblee/t/releases) and place it in `$PATH` directory.
+
 ## Usage
 
 ```
