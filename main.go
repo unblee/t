@@ -22,6 +22,8 @@ import (
 
 const usageMsg = `
 Usage: t [input text] or echo [input text] | t
+	option:
+		-v --version: show version
 
 	t translates input text specified by argument or STDIN using Watson Language Translation API.
 	Source language will be automatically detected.
@@ -36,6 +38,14 @@ Usage: t [input text] or echo [input text] | t
 		Good morning!
 `
 
+var (
+	Version   string
+	Revision  string
+	GoVersion string
+	ShowVerL  = flag.Bool("version", false, "show version")
+	ShowVerS  = flag.Bool("v", false, "show version")
+)
+
 const (
 	ExitCodeOK = iota
 	ExitCodeError
@@ -47,6 +57,12 @@ func main() {
 		os.Exit(ExitCodeOK)
 	}
 	flag.Parse()
+	if *ShowVerL || *ShowVerS {
+		fmt.Printf("version:    %s\n", Version)
+		fmt.Printf("revision:   %s\n", Revision)
+		fmt.Printf("go version: %s\n", GoVersion)
+		os.Exit(ExitCodeOK)
+	}
 	os.Exit(run(flag.Args()))
 }
 
