@@ -28,8 +28,8 @@ Usage: t [input text] or echo [input text] | t
 	t translates input text specified by argument or STDIN using Watson Language Translation API.
 	Source language will be automatically detected.
 
-	export T_WATSON_LANGUAGE_TRANSLATOR_API_USERNAME = <Your Watson Language Translator API username>
-	export T_WATSON_LANGUAGE_TRANSLATOR_API_PASSWORD = <Your Watson Language Translator API password>
+	export T_WATSON_LANGUAGE_TRANSLATOR_API_USERNAME=<Your Watson Language Translator API username>
+	export T_WATSON_LANGUAGE_TRANSLATOR_API_PASSWORD=<Your Watson Language Translator API password>
 
 	Example:
 		$ t Good morning!
