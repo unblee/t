@@ -13,7 +13,7 @@ DOCKER_CMD_OPT := -v $(PWD):/go/src/$(NAME) \
                   -e NAME=$(NAME) \
                   -e VERSION=$(VERSION) \
                   -e LDFLAGS='$(LDFLAGS)' \
-                  -e LDFLAGS='$(GITHUB_TOKEN)'
+                  -e GITHUB_TOKEN='$(GITHUB_TOKEN)'
 DOCKER_CMD     := docker run -it --rm $(DOCKER_CMD_OPT) golang:$(GO_VERSION)-alpine
 
 .PHONY: deps
